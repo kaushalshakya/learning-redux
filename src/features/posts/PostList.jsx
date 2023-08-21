@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { selectAllPosts } from './postsSlice';
 
 const PostList = () => {
-    const posts = useSelector((state) => state.posts);
+    const posts = useSelector(selectAllPosts);
     const renderedPosts = posts.map(post => (
         <article key={post.id}>
             <h3>{post.title}</h3>
-            <p>{post.content}</p>
+            <p> {post.content.length >= 100 ? post.content.substring(0,100) + '...' : post.content}</p>
         </article>
     ))
   return (
