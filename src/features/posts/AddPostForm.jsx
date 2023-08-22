@@ -16,6 +16,9 @@ const AddPostForm = () => {
             dispatch(
                 postAdded(title, content, userId)
             )
+            if(userId == 0) {
+                return alert('Please select a valid author');
+            }
             setTitle('');
             setContent('');
         }

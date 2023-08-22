@@ -2,6 +2,11 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = ([
     {
+        id: 0,
+        firstName: 'Select',
+        lastName: ''
+    },
+    {
         id: 1,
         firstName: 'Author',
         lastName: 'Name'
