@@ -5,8 +5,9 @@ import React from 'react'
 
 const PostAuthor = ({userId}) => {
   const users = useSelector(allUsers);
-  const author = users.find(user => user.id === parseInt(userId));
-  console.log(author);
+  console.log(users);
+  const author = users.find(user => user.id == userId);
+  // console.log(author);
   return (
     <span>Author: {author ? author.firstName.concat(' ', author.lastName) : 'Unknown Author'}</span>
   )

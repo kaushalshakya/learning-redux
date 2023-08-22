@@ -35,7 +35,7 @@ const userSlice = createSlice(
                 prepare(firstName, lastName) {
                     return {
                         payload: {
-                            userId: nanoid(),
+                            id: nanoid(),
                             firstName,
                             lastName
                         }
