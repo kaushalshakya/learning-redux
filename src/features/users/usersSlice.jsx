@@ -28,24 +28,26 @@ const userSlice = createSlice(
         name: 'users',
         initialState,
         reducers : {
-            // userAdded : {
-            //     reducer(state, action) {
-            //         state.push(action.payload)
-            //     },
-            //     prepare(firstName, lastName) {
-            //         return {
-            //             userId: nanoid(),
-            //             firstName,
-            //             lastName
-            //         }
-            //     }
-            // }
+            userAdd : {
+                reducer(state, action) {
+                    state.push(action.payload)
+                },
+                prepare(firstName, lastName) {
+                    return {
+                        payload: {
+                            userId: nanoid(),
+                            firstName,
+                            lastName
+                        }
+                    }
+                }
+            }
         }
     }
 )
 
 export const allUsers = (state) => state.users;
 
-// export const { userAdded } = userSlice.actions;
+export const { userAdd } = userSlice.actions;
 
 export default userSlice.reducer;
