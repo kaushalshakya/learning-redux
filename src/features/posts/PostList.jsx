@@ -6,15 +6,16 @@ import Time from './Time';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts);
-    const renderedPosts = posts.map(post => (
+
+    const orderedPost = posts.slice().sort((a,b) => b.date.localeCompare(a.date));
+
+    const renderedPosts = orderedPost.map(post => (
         <article key={post.id}>
             <h3>{post.title}</h3>
             <p> {post.content.length >= 100 ? post.content.substring(0,100) + '...' : post.content}</p>
             <p className='postCredit'>
                 <PostAuthor userId = {post.userId}/>
-            </p>
-            <p>
-              <Time time={new Date()}></Time>
+              <Time time={post.date} />
             </p>
         </article>
     ))

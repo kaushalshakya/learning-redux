@@ -6,7 +6,8 @@ const Time = ({time}) => {
     let timeAgo = '';
     if(time){
         const date = parseISO(time);
-        timeAgo = `${formatDistanceToNow(time, timeAgo)} ago`;
+        const dist = formatDistanceToNow(date);
+        timeAgo = `${dist} ago`;
     }
   return (
     <span title={time}>
