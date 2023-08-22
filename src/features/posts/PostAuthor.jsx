@@ -5,7 +5,6 @@ import React from 'react'
 
 const PostAuthor = ({userId}) => {
   const users = useSelector(allUsers);
-  console.log('userId: ' + userId);
   const author = users.find(user => user.id === parseInt(userId));
   console.log(author);
   return (

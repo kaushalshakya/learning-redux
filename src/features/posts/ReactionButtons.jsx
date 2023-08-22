@@ -13,9 +13,20 @@ const ReactionButtons = ({ post }) => {
         sad: '😔',
         angry: '😠'
     }
+
+    const handleReactions = (name, postId) => {
+        console.log('reaction:', name);
+        dispatch(reactionAdded(
+            {
+                postId,
+                reaction: name
+            }
+        ))
+    }
+
     const reactions = Object.entries(reactionEmojis).map(([name, emojis]) => {
         return (
-            <button key={name} className="reactionButton" type="button" onClick={() => dispatch(reactionAdded({postId: post.id, reaction: name}))}>{emojis} {post.reactions[name]}</button>
+            <button key={name} className="reactionButton" type="button" onClick={() => handleReactions(name, post.id)}>{emojis} {post.reactions[name]}</button>
         )
     })
   return (
