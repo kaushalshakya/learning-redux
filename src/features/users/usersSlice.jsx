@@ -6,21 +6,6 @@ const initialState = ([
         firstName: 'Select',
         lastName: ''
     },
-    {
-        id: 1,
-        firstName: 'Author',
-        lastName: 'Name'
-    },
-    {
-        id: 2,
-        firstName: 'Test',
-        lastName: 'User'
-    },
-    {
-        id: 3,
-        firstName: 'Alpha',
-        lastName: 'User'
-    }
 ])
 
 const userSlice = createSlice(

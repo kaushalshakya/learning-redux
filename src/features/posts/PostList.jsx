@@ -24,7 +24,7 @@ const PostList = () => {
     ))
   return (
     <section>
-        <h2>Posts</h2>
+        {posts[0] && <h2>Posts</h2>}
         {renderedPosts}
         <p><Link to='/add-post'><button>Add Post</button></Link></p>
         <p><Link to='/new-user'><button>Add User</button></Link></p>
