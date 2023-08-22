@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { postAdded } from './postsSlice';
 import { allUsers } from '../users/usersSlice';
+import { Link } from 'react-router-dom';
 
 const AddPostForm = () => {
     const [title, setTitle] = useState('');
@@ -48,7 +49,7 @@ const AddPostForm = () => {
             <select id="postAuthor" value={userId} onChange={(e) => setUserId(e.target.value)}>{userOptions}</select>
             <label htmlFor="content">Content: </label>
             <input type="text" value={content} onChange={(e) => setContent(e.target.value)}/>
-            <button type='submit' onKeyDown={handleKeyDown} onClick={onSubmit} disabled = {!canSave}>Save Post</button>
+            <Link to='/'><button type='submit' onKeyDown={handleKeyDown} onClick={onSubmit} disabled = {!canSave}>Save Post</button></Link>
         </form>
     </section>
   )

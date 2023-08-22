@@ -4,6 +4,7 @@ import { selectAllPosts } from './postsSlice';
 import PostAuthor from './PostAuthor';
 import Time from './Time';
 import ReactionButtons from './ReactionButtons';
+import { Link } from 'react-router-dom';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts);
@@ -25,6 +26,7 @@ const PostList = () => {
     <section>
         <h2>Posts</h2>
         {renderedPosts}
+        <Link to='/add-post'><button>Add Post</button></Link>
     </section>
   )
 }
