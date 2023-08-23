@@ -40,6 +40,11 @@ const postsSlice = createSlice(
                 if (existingPost) {
                     existingPost.reactions[reaction]++;
                 }
+            },
+            deletePost(state, action) {
+                console.log(action);
+                const postId = action.payload;
+                return state.filter(post => post.id != postId);
             }
         }
     }
@@ -47,6 +52,6 @@ const postsSlice = createSlice(
 
 export const selectAllPosts = (state) => state.posts;
 
-export const { postAdded, reactionAdded } = postsSlice.actions;
+export const { postAdded, reactionAdded, deletePost } = postsSlice.actions;
 
 export default postsSlice.reducer;
