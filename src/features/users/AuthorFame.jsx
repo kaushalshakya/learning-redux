@@ -23,8 +23,13 @@ const AuthorFame = ({author}) => {
 
     const fame = Object.entries(fameEmojis).map(([name, emojis]) => {
         return (
-            <button key={name} className="reactionButton" type="button" onClick={() => handleReactions(name, author.id)}>{emojis} {author.fame[name]}</button>
-        )
+            author ? 
+            <button key={name} className="reactionButton" type="button" onClick={() => handleReactions(name, author.id)}>
+                {emojis} {author.fame[name]}
+            </button>
+            : null
+        );
+
     })
 
   return (
