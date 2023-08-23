@@ -42,6 +42,11 @@ const userSlice = createSlice(
                 if(author) {
                     author.fame[fame]++;
                 }
+            },
+            deleteAuthor(state, action) {
+                console.log(action);
+                const authorId = action.payload;
+                return state.filter(author => author.id !== authorId);
             }
         }
     }
@@ -49,6 +54,6 @@ const userSlice = createSlice(
 
 export const allUsers = (state) => state.users;
 
-export const { userAdd, authorFame } = userSlice.actions;
+export const { userAdd, authorFame, deleteAuthor } = userSlice.actions;
 
 export default userSlice.reducer;

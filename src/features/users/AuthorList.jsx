@@ -3,6 +3,7 @@ import { allUsers } from './usersSlice'
 import { useSelector } from 'react-redux';
 import NavigationButton from '../../components/NavigationButton';
 import AuthorFame from './AuthorFame';
+import DeleteAuthor from './DeleteAuthor';
 
 export const AuthorList = () => {
     const users = useSelector(allUsers);
@@ -12,6 +13,7 @@ export const AuthorList = () => {
             <h3>First Name: {author.firstName}</h3>
             <h3>Last Name: {author.lastName}</h3>
             <AuthorFame author={author} />
+            <DeleteAuthor authorId={author.id}/>
             <NavigationButton navigateTo={`/authors/${author.id}`} buttonName={'View Details'}/>
         </article>
     )
