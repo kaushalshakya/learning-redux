@@ -1,7 +1,7 @@
 import React from 'react'
 import { allUsers } from './usersSlice'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import NavigationButton from '../../components/NavigationButton';
 
 export const AuthorList = () => {
     const users = useSelector(allUsers);
@@ -10,7 +10,7 @@ export const AuthorList = () => {
         <article key={author.id}>
             <h3>First Name: {author.firstName}</h3>
             <h3>Last Name: {author.lastName}</h3>
-            <Link to={`/authors/${author.id}`}><button type='button'>View Details</button></Link>
+            <NavigationButton navigateTo={`/authors/${author.id}`} buttonName={'View Details'}/>
         </article>
     )
 );

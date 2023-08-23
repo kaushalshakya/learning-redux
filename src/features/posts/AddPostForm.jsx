@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postAdded } from './postsSlice';
 import { allUsers } from '../users/usersSlice';
 import { Link } from 'react-router-dom';
+import NavigationButton from '../../components/NavigationButton';
 
 const AddPostForm = () => {
     const [title, setTitle] = useState('');
@@ -50,6 +51,8 @@ const AddPostForm = () => {
             <label htmlFor="content">Content: </label>
             <input type="text" value={content} onChange={(e) => setContent(e.target.value)}/>
             <Link to='/'><button type='submit' onKeyDown={handleKeyDown} onClick={onSubmit} disabled = {!canSave}>Save Post</button></Link>
+            <NavigationButton navigateTo={'/authors'} buttonName={'View Authors'}/>
+            <NavigationButton navigateTo={'/new-user'} buttonName={'Add Author'}/>
         </form>
     </section>
   )
