@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { sub } from "date-fns";
 
 const initialState = [];
 
@@ -10,9 +9,11 @@ const postsSlice = createSlice(
         reducers : {
             postAdded : {
                 reducer(state, action){
+                    console.log('image action?');
+                    console.log(action);
                     state.push(action.payload)
                 },
-                prepare(title, content, userId) {
+                prepare(title, content, userId, image) {
                     return {
                         payload : {
                             id: nanoid(),
@@ -20,6 +21,7 @@ const postsSlice = createSlice(
                             date: new Date().toISOString(),
                             content,
                             userId,
+                            image,
                             reactions: {
                                 like: 0,
                                 dislike: 0,
@@ -27,7 +29,7 @@ const postsSlice = createSlice(
                                 funny: 0,
                                 sad: 0,
                                 angry: 0
-                            }
+                            },
                         },
                         
                     }

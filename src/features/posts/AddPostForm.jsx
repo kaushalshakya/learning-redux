@@ -9,6 +9,7 @@ const AddPostForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [userId, setUserId] = useState('');
+    const [image, setImage] = useState(null);
     const dispatch = useDispatch();
 
     const users = useSelector(allUsers);
@@ -16,7 +17,7 @@ const AddPostForm = () => {
     const onSubmit = () => {
         if(title && content) {
             dispatch(
-                postAdded(title, content, userId)
+                postAdded(title, content, userId, (image ? image.name : null))
             )
             if(userId == 0) {
                 return alert('Please select a valid author');
@@ -46,6 +47,8 @@ const AddPostForm = () => {
         <form onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="title">Title: </label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+            <label htmlFor="title">Image: </label>
+            <input type="file"  onChange={(e) => setImage(e.target.files[0])}/>
             <label htmlFor="postAuthor">Post Author:</label>
             <select id="postAuthor" value={userId} onChange={(e) => setUserId(e.target.value)}>{userOptions}</select>
             <label htmlFor="content">Content: </label>
