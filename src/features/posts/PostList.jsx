@@ -15,7 +15,7 @@ const PostList = () => {
         <article key={post.id}>
             <h3>{post.title} {<span><DeletePost postId={post.id}/></span> }</h3>
             <p> {post.content.length >= 100 ? post.content.substring(0,100) + '...' : post.content}</p>
-            <p><img src={post.image} alt="" /></p>
+            {post.image && <p><img className='postImg' src={post.image} alt="" /></p>}
             <p className='postCredit'>
                 <PostAuthor userId = {post.userId}/>
               <Time time={post.date} />

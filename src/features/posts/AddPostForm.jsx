@@ -17,7 +17,7 @@ const AddPostForm = () => {
     const onSubmit = () => {
         if(title && content) {
             dispatch(
-                postAdded(title, content, userId, (image ? image.name : null))
+                postAdded(title, content, userId, (image ? image : null))
             )
             if(userId == 0) {
                 return alert('Please select a valid author');
@@ -30,6 +30,19 @@ const AddPostForm = () => {
     const handleKeyDown = (e) => {
         if(e.key.toLowerCase() == 'enter') {
             onSubmit();
+        }
+    }
+
+    const onImageUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImage(reader.result);
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
         }
     }
 
@@ -48,7 +61,7 @@ const AddPostForm = () => {
             <label htmlFor="title">Title: </label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
             <label htmlFor="title">Image: </label>
-            <input type="file"  onChange={(e) => setImage(e.target.files[0])}/>
+            <input type="file"  onChange={onImageUpload}/>
             <label htmlFor="postAuthor">Post Author:</label>
             <select id="postAuthor" value={userId} onChange={(e) => setUserId(e.target.value)}>{userOptions}</select>
             <label htmlFor="content">Content: </label>
