@@ -21,12 +21,13 @@ const userSlice = createSlice(
                 reducer(state, action) {
                     state.push(action.payload)
                 },
-                prepare(firstName, lastName) {
+                prepare(firstName, lastName, image) {
                     return {
                         payload: {
                             id: nanoid(),
                             firstName,
                             lastName,
+                            image,
                             fame: {
                                 love: 0,
                                 hate: 0

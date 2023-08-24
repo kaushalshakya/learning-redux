@@ -10,11 +10,12 @@ export const AuthorList = () => {
     const authorList = users.map(author => 
     author.id !== 0 && (
         <article key={author.id}>
-            <h3>First Name: {author.firstName}</h3>
-            <h3>Last Name: {author.lastName}</h3>
-            <AuthorFame author={author} />
-            <DeleteAuthor authorId={author.id}/>
-            <NavigationButton navigateTo={`/authors/${author.id}`} buttonName={'View Details'}/>
+          {author.image && <img className='profile' src={author.image} alt="" />}
+          <h3>First Name: {author.firstName}</h3>
+          <h3>Last Name: {author.lastName}</h3>
+          <AuthorFame author={author} />
+          <DeleteAuthor authorId={author.id}/>
+          <NavigationButton navigateTo={`/authors/${author.id}`} buttonName={'View Details'}/>
         </article>
     )
 );
