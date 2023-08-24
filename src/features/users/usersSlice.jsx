@@ -19,7 +19,8 @@ const userSlice = createSlice(
         reducers : {
             userAdd : {
                 reducer(state, action) {
-                    state.push(action.payload)
+                    state.push(action.payload);
+                    localStorage.setItem('authors', JSON.stringify(state));
                 },
                 prepare(firstName, lastName, image) {
                     return {
@@ -37,7 +38,6 @@ const userSlice = createSlice(
                 },
             },
             authorFame(state, action) {
-                console.log(action);
                 const { authorId, fame } = action.payload;
                 const author = state.find(author => author.id == authorId);
                 if(author) {

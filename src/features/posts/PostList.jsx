@@ -6,9 +6,11 @@ import Time from './Time';
 import ReactionButtons from './ReactionButtons';
 import NavigationButton from '../../components/NavigationButton';
 import DeletePost from './DeletePost';
+import { Link } from 'react-router-dom';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts);
+    console.log(localStorage);
 
     const orderedPost = posts.slice().sort((a,b) => b.date.localeCompare(a.date));
     const renderedPosts = orderedPost.map(post => (
@@ -21,6 +23,7 @@ const PostList = () => {
               <Time time={post.date} />
             </p>
             <ReactionButtons post={post} />
+            <Link to={`/post/${post.id}`}><button type='button'>Update</button></Link>
         </article>
     ))
   return (

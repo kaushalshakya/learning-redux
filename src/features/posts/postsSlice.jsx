@@ -9,9 +9,9 @@ const postsSlice = createSlice(
         reducers : {
             postAdded : {
                 reducer(state, action){
-                    console.log('image action?');
-                    console.log(action);
-                    state.push(action.payload)
+                    state.push(action.payload);
+                    localStorage.setItem('Posts', JSON.stringify(state));
+
                 },
                 prepare(title, content, userId, image) {
                     return {
@@ -44,16 +44,38 @@ const postsSlice = createSlice(
                 }
             },
             deletePost(state, action) {
-                console.log(action);
                 const postId = action.payload;
                 return state.filter(post => post.id != postId);
+            },
+            updatePost(state, action) {
+                const {postId, title, content, image} = action.payload;
+
+                // Find the index of the post to be updated
+                const postIndex = state.find(post => post.id === postId);
+                console.log('postIndex');
+                console.log(postIndex);
+
+                if (postIndex !== -1) {
+                    const targetPost = state[postIndex];
+
+                    const updatedPost = {
+                        ...targetPost,
+                        title: title ? title : targetPost.title,
+                        content: content ? content : targetPost.content,
+                        image: image ? image : targetPost.image
+                    };
+
+                    // Replace the old post with the updated post in the state array
+                    state[postIndex] = updatedPost;
+                }
             }
+
         }
     }
 )
 
 export const selectAllPosts = (state) => state.posts;
 
-export const { postAdded, reactionAdded, deletePost } = postsSlice.actions;
+export const { postAdded, reactionAdded, deletePost, updatePost } = postsSlice.actions;
 
 export default postsSlice.reducer;

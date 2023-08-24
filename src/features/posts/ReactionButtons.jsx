@@ -15,7 +15,6 @@ const ReactionButtons = ({ post }) => {
     }
 
     const handleReactions = (name, postId) => {
-        console.log('reaction:', name);
         dispatch(reactionAdded(
             {
                 postId,
