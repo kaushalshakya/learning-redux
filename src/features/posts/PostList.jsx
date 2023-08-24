@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts);
-    console.log(localStorage);
 
     const orderedPost = posts.slice().sort((a,b) => b.date.localeCompare(a.date));
     const renderedPosts = orderedPost.map(post => (

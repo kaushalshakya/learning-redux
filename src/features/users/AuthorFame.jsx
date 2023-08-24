@@ -33,7 +33,7 @@ const AuthorFame = ({author}) => {
     })
 
   return (
-    <div>{fame}</div>
+    <>{fame}</>
   )
 }
 
