@@ -11,8 +11,11 @@ const postsSlice = createSlice(
             postAdded : {
                 reducer(state, action){
                     state.push(action.payload);
-                    localStorage.setItem('Posts', JSON.stringify(state));
-
+                    const getPosts = localStorage.getItem('Posts');
+                    const array = getPosts ? JSON.parse(getPosts) : [];
+                    array.push(state);
+                    console.log(array);
+                    localStorage.setItem('Posts', JSON.stringify(array));
                 },
                 prepare(title, content, userId, image) {
                     return {
@@ -37,12 +40,31 @@ const postsSlice = createSlice(
                 },
             },
             reactionAdded(state, action) {
-                console.log(action);
                 const { postId, reaction } = action.payload;
-                const existingPost = state.find(post => post.id == postId);
-                if (existingPost) {
-                    existingPost.reactions[reaction]++;
+                const post = localStorage.getItem('Posts');
+                const postJson = JSON.parse(post);
+                const existingPostArr = postJson.findIndex(post => post.id == postId);
+
+                const statePost = state.find(post => post.id == postId);
+                if (statePost) {
+                    console.log(statePost);
+                    statePost.reactions[reaction]++;
                 }
+
+                if (existingPostArr !== -1) {
+                    const existingPost = postJson[existingPostArr];
+                    if (existingPost.reactions) {
+                        console.log(existingPost.reactions);
+                        if (existingPost.reactions[reaction]) {
+                            existingPost.reactions[reaction]++;
+                        } else {
+                            existingPost.reactions[reaction] = 1;  
+                        }
+                    } else {
+                        existingPost.reactions = { [reaction]: 1 };
+                    }
+                }
+                localStorage.setItem('Posts', JSON.stringify(postJson));
             },
             deletePost(state, action) {
                 const postId = action.payload;
