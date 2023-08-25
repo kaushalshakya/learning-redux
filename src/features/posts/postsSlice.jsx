@@ -2,6 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { current } from "@reduxjs/toolkit";
 
 const initialState = [];
+const postArticle=[];
 
 const postsSlice = createSlice(
     {
@@ -10,12 +11,17 @@ const postsSlice = createSlice(
         reducers : {
             postAdded : {
                 reducer(state, action){
+                    console.log("action",action.payload)
                     state.push(action.payload);
-                    const getPosts = localStorage.getItem('Posts');
-                    const array = getPosts ? JSON.parse(getPosts) : [];
-                    array.push(state);
-                    console.log(array);
-                    localStorage.setItem('Posts', JSON.stringify(array));
+                    console.log("state",action.payload)
+                    postArticle.push(action.payload);
+                    console.log("postArticle",postArticle)
+                    localStorage.setItem("Posts", JSON.stringify(postArticle));
+                    // const getPosts = localStorage.getItem('Posts');
+                    // const array = getPosts ? JSON.parse(getPosts) : [];
+                    // console.log("array from post",array)
+                    // console.log("setarray in localstorage",array);
+                    // localStorage.setItem('Posts', JSON.stringify(array));
                 },
                 prepare(title, content, userId, image) {
                     return {

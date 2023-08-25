@@ -12,7 +12,8 @@ const AddPostForm = () => {
     const [image, setImage] = useState(null);
     const dispatch = useDispatch();
 
-    const users = useSelector(allUsers);
+    const usersList = localStorage.getItem('authors');
+    const users = JSON.parse(usersList);
 
     const onSubmit = () => {
         if(title && content) {

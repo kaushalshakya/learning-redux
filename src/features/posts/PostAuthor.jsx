@@ -6,6 +6,7 @@ import React from 'react'
 const PostAuthor = ({userId}) => {
   const users = localStorage.getItem('authors');
   const usersJson = JSON.parse(users);
+  console.log(usersJson);
   const author = usersJson.filter(user => user.id == userId);
   return (
     <>
