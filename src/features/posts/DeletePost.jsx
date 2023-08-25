@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { deletePost } from "./postsSlice";
-import deleteIcon from '../../assets/delete.svg';
 
 import React from 'react'
 

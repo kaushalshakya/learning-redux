@@ -23,6 +23,7 @@ const PostList = () => {
          <p className='postCredit'>
         <h3>Title: {post.title}</h3>
         <p>Content: {post.content.length >= 100 ? post.content.substring(0,100) + '...' : post.content}</p>
+        <DeletePost postId={post.id}/>
         {post.image && <p><img className='postImg' src={post.image} alt="" /></p>}
               <PostAuthor userId = {post.userId}/>
               <Time time={post.date} />
