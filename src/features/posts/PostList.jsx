@@ -24,7 +24,7 @@ const PostList = () => {
         <h3>Title: {post.title}</h3>
         <p>Content: {post.content.length >= 100 ? post.content.substring(0,100) + '...' : post.content}</p>
         {post.image && <p><img className='postImg' src={post.image} alt="" /></p>}
-                <PostAuthor userId = {post.userId}/>
+              <PostAuthor userId = {post.userId}/>
               <Time time={post.date} />
           </p>
           <ReactionButtons post={post} />

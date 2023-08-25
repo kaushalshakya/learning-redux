@@ -11,17 +11,12 @@ const postsSlice = createSlice(
         reducers : {
             postAdded : {
                 reducer(state, action){
-                    console.log("action",action.payload)
+                    
                     state.push(action.payload);
-                    console.log("state",action.payload)
+                    
                     postArticle.push(action.payload);
-                    console.log("postArticle",postArticle)
+                   
                     localStorage.setItem("Posts", JSON.stringify(postArticle));
-                    // const getPosts = localStorage.getItem('Posts');
-                    // const array = getPosts ? JSON.parse(getPosts) : [];
-                    // console.log("array from post",array)
-                    // console.log("setarray in localstorage",array);
-                    // localStorage.setItem('Posts', JSON.stringify(array));
                 },
                 prepare(title, content, userId, image) {
                     return {
@@ -51,11 +46,11 @@ const postsSlice = createSlice(
                 const postJson = JSON.parse(post);
                 const existingPostArr = postJson.findIndex(post => post.id == postId);
 
-                const statePost = state.find(post => post.id == postId);
-                if (statePost) {
-                    console.log(statePost);
-                    statePost.reactions[reaction]++;
-                }
+            //    const statePost = state.find(post => post.id == postId);
+            //     if (statePost) {
+            //         console.log(statePost);
+            //         statePost.reactions[reaction]++;
+            //     } 
 
                 if (existingPostArr !== -1) {
                     const existingPost = postJson[existingPostArr];
@@ -78,19 +73,27 @@ const postsSlice = createSlice(
             },
             updatePost(state, action) {
                 const {id, title, content, image} = action.payload;
+
+                const postsJson = localStorage.getItem('Posts');
+                const posts = JSON.parse(postsJson);
+
                 console.log(action.payload);
-                const postIndex = state.findIndex(post => post.id == id);
+                const postIndex = posts.findIndex(post => post.id == id);
+
+                console.log('post Index', postIndex);
 
                 if (postIndex !== -1) {
-                    const targetPost = state[postIndex];
+                    const targetPost = posts[postIndex];
                     const updatedPost = {
                         ...targetPost,
                         title: title.length > 0 ? title : targetPost.title,
                         content: content.length > 0 ? content : targetPost.content,
                         image: image ? image : targetPost.image
                     };
-                    state[postIndex] = updatedPost;
+                    posts[postIndex] = updatedPost;
                 }
+
+                localStorage.setItem('Posts', JSON.stringify(posts))
             }
 
         }

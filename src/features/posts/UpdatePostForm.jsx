@@ -12,7 +12,8 @@ const UpdatePostForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
-    const allPosts = useSelector(selectAllPosts);
+    const postsJson = localStorage.getItem('Posts');
+    const allPosts = JSON.parse(postsJson);
     const targetPost = allPosts.filter(post => post.id == id);
     const dispatch = useDispatch();
 
@@ -36,9 +37,9 @@ const UpdatePostForm = () => {
         dispatch (
             updatePost({id, title, content, image})
         );
-        // setTitle('');
-        // setContent('');
-        // setImage(null);
+        setTitle('');
+        setContent('');
+        setImage(null);
     }
 
     const handleKeyDown = (e) => {
