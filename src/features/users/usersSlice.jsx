@@ -12,6 +12,18 @@ const initialState = ([
     },
 ])
 
+const usersArray = [
+    {
+        id: 0,
+        firstName: 'Select',
+        lastName: '',
+        fame: {
+            love: '0',
+            hate: '0'
+        }
+    },
+];
+
 const userSlice = createSlice(
     {
         name: 'users',
@@ -20,6 +32,7 @@ const userSlice = createSlice(
             userAdd : {
                 reducer(state, action) {
                     state.push(action.payload);
+                    usersArray.push(action.payload);
                     localStorage.setItem('authors', JSON.stringify(state));
                 },
                 prepare(firstName, lastName, image) {
